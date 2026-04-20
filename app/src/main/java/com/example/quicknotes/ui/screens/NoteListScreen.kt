@@ -40,7 +40,7 @@ fun NoteListScreen(
             )
         },
 
-        // ✅ FIXED FLOATING BUTTON (ONLY CHANGE)
+
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { onAddClick() },
