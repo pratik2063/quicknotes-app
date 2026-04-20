@@ -35,19 +35,26 @@ fun NoteListScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        "QuickNotes",
-                        fontWeight = FontWeight.Bold
-                    )
+                    Text("QuickNotes", fontWeight = FontWeight.Bold)
                 }
             )
         },
 
+        // ✅ FIXED FLOATING BUTTON (ONLY CHANGE)
         floatingActionButton = {
-            FloatingActionButton(onClick = onAddClick) {
-                Icon(Icons.Default.Add, contentDescription = "Add Note")
+            FloatingActionButton(
+                onClick = { onAddClick() },
+                containerColor = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.size(72.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add Note",
+                    modifier = Modifier.size(36.dp)
+                )
             }
         }
+
     ) { paddingValues ->
 
         Column(
@@ -55,7 +62,6 @@ fun NoteListScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-
 
             OutlinedTextField(
                 value = search,
@@ -114,6 +120,7 @@ fun NoteListScreen(
         }
     }
 }
+
 @Composable
 fun NoteCard(
     note: Note,

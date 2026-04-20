@@ -16,6 +16,8 @@ fun NoteApp(viewModel: NoteViewModel) {
         navController = navController,
         startDestination = "list"
     ) {
+
+        // NOTE LIST SCREEN
         composable("list") {
             NoteListScreen(
                 viewModel = viewModel,
@@ -28,17 +30,23 @@ fun NoteApp(viewModel: NoteViewModel) {
             )
         }
 
+        // ADD NOTE SCREEN
         composable("add") {
             AddEditNoteScreen(
                 viewModel = viewModel,
                 noteId = null,
                 onSaveDone = {
                     navController.popBackStack()
+                },
+                onBack = {
+                    navController.popBackStack()   // ✅ FIXED
                 }
             )
         }
 
+        // EDIT NOTE SCREEN
         composable("edit/{noteId}") { backStackEntry ->
+
             val noteId = backStackEntry.arguments
                 ?.getString("noteId")
                 ?.toIntOrNull()
@@ -48,6 +56,9 @@ fun NoteApp(viewModel: NoteViewModel) {
                 noteId = noteId,
                 onSaveDone = {
                     navController.popBackStack()
+                },
+                onBack = {
+                    navController.popBackStack()   // ✅ FIXED
                 }
             )
         }
